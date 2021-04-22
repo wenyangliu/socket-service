@@ -19,3 +19,10 @@ const listen = () => {
   })
 }
 listen()
+
+// 错误退出可以自动重启
+process.on('uncaughtException', function (e) {
+  console.log('An error has occured. error is: %s and stack trace is: %s', e, e.stack)
+  console.log('Process will restart now.')
+  process.exit(1)
+})
